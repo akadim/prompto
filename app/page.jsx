@@ -1,3 +1,4 @@
+import Feed from '@components/Feed'
 import React from 'react'
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
         Prompto is an AI tool designed for the modern world, enabling users to
         discover, share, and create innovative prompts.
       </p>
+
+      <Feed />
     </section>
   )
 }

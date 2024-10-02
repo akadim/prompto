@@ -1,5 +1,7 @@
 import '@styles/globals.css'
 
+import Navbar from '@components/Navbar'
+
 export const metadata = {
   title: 'Prompto',
   description: 'Discover and Share AI Prompts'
@@ -13,7 +15,10 @@ const RootLayout = ({ children }) => {
           <div className='gradient' />
         </div>
 
-        <main className='app'>{children}</main>
+        <main className='app'>
+          <Navbar />
+          {children}
+        </main>
       </body>
     </html>
   )
