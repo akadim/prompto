@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { useSession, signIn, signOut, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
-  const isUserLoggedIn = true
+  const { data: session } = useSession()
   const [providers, setProviders] = useState(null)
   const [toggleDropdown, setToggleDropdown] = useState(false)
 
@@ -34,7 +34,7 @@ const Navbar = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create-prompt' className='black_btn'>
               Create Prompt
@@ -46,7 +46,7 @@ const Navbar = () => {
 
             <Link href='/profile'>
               <Image
-                src='/assets/images/logo.svg'
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className='rounded-full'
@@ -61,7 +61,7 @@ const Navbar = () => {
                 <button
                   type='button'
                   key={provider.name}
-                  onClick={() => signIn(provier.id)}
+                  onClick={() => signIn(provider.id)}
                   className='black_btn'
                 >
                   Sign In
@@ -73,10 +73,10 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       <div className='sm:hidden flex relative'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex'>
             <Image
-              src='/assets/images/logo.svg'
+              src={session?.user.image}
               width={37}
               height={37}
               className='rounded-full'
