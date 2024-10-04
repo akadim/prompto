@@ -16,8 +16,10 @@ const UserSchema = new Schema({
     unique: [true, 'Email must be unique']
   },
   image: {
-    type: String,
-    required: true
+    type: String
   }
 })
-export default models.User || model('User', UserSchema)
+
+const User = models.User || model('User', UserSchema)
+
+export default User
